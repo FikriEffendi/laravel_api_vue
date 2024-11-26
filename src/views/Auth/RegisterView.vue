@@ -48,7 +48,7 @@
 
 <script setup>
 import { useAuthStore } from "@/stores/auth";
-import { reactive } from "vue";
+import { onMounted, reactive } from "vue";
 
 const authStore = useAuthStore();
 // const { authenticate } = useAuthStore();
@@ -58,6 +58,10 @@ const formData = reactive({
   email: "",
   password: "",
   password_confirmation: "",
+});
+
+onMounted(() => {
+  authStore.errors = {};
 });
 </script>
 
