@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h1 class="title">Buat Keluhan</h1>
+    <h1 class="title">Ubah Keluhan</h1>
 
     <form
       action=""
-      @submit.prevent="postsStore.createPost(formData)"
       class="w-1/2 mx-auto space-y-6"
+      @submit.prevent="postsStore.updatePost(post, formData)"
     >
       <div>
         <input type="text" placeholder="Post Title" v-model="formData.title" />
@@ -27,20 +27,38 @@
         </p>
       </div>
 
-      <button class="primary-btn">Create</button>
+      <button class="primary-btn">Update</button>
     </form>
   </div>
 </template>
 
 <script setup>
+import { useAuthStore } from "@/stores/auth";
 import { usePostsStore } from "@/stores/posts";
-import { reactive } from "vue";
+import { onMounted, reactive, ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
 
+const router = useRouter();
+const route = useRoute();
 const postsStore = usePostsStore();
+const authStore = useAuthStore();
+
+const post = ref(null);
 
 const formData = reactive({
   title: "",
   body: "",
+});
+
+onMounted(async () => {
+  post.value = await postsStore.getPost(route.params.id);
+
+  if (authStore.user.id !== post.value.user_id) {
+    router.push({ name: "home" });
+  } else {
+    formData.title = post.value.title;
+    formData.body = post.value.body;
+  }
 });
 </script>
 

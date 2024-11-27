@@ -14,7 +14,7 @@ export const useAuthStore = defineStore("authStore", {
       if (localStorage.getItem("token")) {
         const res = await fetch("/api/user", {
           headers: {
-            authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
         const data = await res.json();
@@ -49,7 +49,7 @@ export const useAuthStore = defineStore("authStore", {
       const res = await fetch("/api/logout", {
         method: "post",
         headers: {
-          authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
 

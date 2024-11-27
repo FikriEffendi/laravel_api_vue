@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="title">Login to your account</div>
+    <div class="title">Login</div>
 
     <!-- () => authStore.authenticate('register', formData) -->
     <form

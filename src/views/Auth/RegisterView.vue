@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="title">Register to new account</div>
+    <div class="title">Buat akun baru</div>
 
     <!-- () => authStore.authenticate('register', formData) -->
     <form

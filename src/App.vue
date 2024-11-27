@@ -20,7 +20,7 @@ const authStore = useAuthStore();
           Welcome back {{ authStore.user.name }}
         </p>
         <router-link :to="{ name: 'create' }" class="nav-link"
-          >New Post</router-link
+          >Buat Keluhan</router-link
         >
         <form action="" @submit.prevent="authStore.logout">
           <button class="nav-link">Logout</button>
